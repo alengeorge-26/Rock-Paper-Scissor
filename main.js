@@ -15,27 +15,40 @@ function getcompchoice()
     return choice[randnum];
 }
 
-function lose()
+function full(y)
+{
+    switch(y)
+    {
+        case 'r':return "Rock";
+                 break;
+        case 'p':return "Paper";
+                 break;
+        case 's':return "Scissor";
+                 break;
+    }
+}
+
+function lose(x,y)
 {
     comp_score++;
     compscore_span.innerHTML=comp_score;
     userscore_span.innerHTML=user_score;
-    result_div.innerHTML="You Lose";
+    result_div.innerHTML=`Computer chose ${full(y)}. You Lose`;
 }
 
-function win()
+function win(x,y)
 {
     user_score++;
     compscore_span.innerHTML=comp_score;
     userscore_span.innerHTML=user_score;
-    result_div.innerHTML="You Win";
+    result_div.innerHTML=`Computer chose ${full(y)}. You Win`;
 }
 
-function draw()
+function draw(x,y)
 {
     compscore_span.innerHTML=comp_score;
     userscore_span.innerHTML=user_score;
-    result_div.innerHTML="Draw";
+    result_div.innerHTML=`Computer chose ${full(y)}. Draw`;
 }
 
 function game(userchoice)
@@ -46,17 +59,17 @@ function game(userchoice)
     {
         case("rp"):
         case("ps"):
-        case("sr"):lose();
+        case("sr"):lose(userchoice,compchoice);
         break;
 
         case("pr"):
         case("sp"):
-        case("rs"):win();
+        case("rs"):win(userchoice,compchoice);
         break;
 
         case("pp"):
         case("ss"):
-        case("rr"):draw();
+        case("rr"):draw(userchoice,compchoice);
         break;
     }
 }
